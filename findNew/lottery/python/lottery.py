@@ -49,8 +49,8 @@ class LotteryApp:
             height=400, 
             background_color='#F0F0F0',
             font_path='msyh.ttc',
-            max_font_size=50,
-            min_font_size=30
+            max_font_size=40,
+            min_font_size=10
         ).generate(names)
 
         # 将词云转换为图像
