@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>I++ 迎新抽奖系统</title>
+</head>
+<body>
+    <div>
+        <div class="image-container">
+            <h1>I++ 迎新抽奖系统</h1>
+            <span style="margin-left: 30px;"></span>
+            <img src="./imgs/logo.png" alt="Logo" width="70" height="70">
+        </div>
+        <div>
+            <div class="grid-container">
+                <div class="item container">
+                    <canvas id="wordcloudCanvas" width="450" height="450"></canvas>
+                </div>
+                <div class="item container">
+                    <div>
+                        <p></p><label for="numWinners">输入抽奖人数：</label></p>
+                        <p></p><input type="number" id="numWinners" min="1"></p>
+                        <p></p><button id="startLottery">开始抽奖</button></p>
+                        <p></p><button id="stopLottery">停止抽奖</button></p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div style="padding: 20px;">
+                        <label id="result">抽奖结果:</label>
+                    </div>
+                    <div>
+                        <label id="resultDisplay"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/wordcloud2.js"></script>
+    <script src="./js/students.js"></script>
+    <script src="./js/scripit.js"></script>
+</body>
+</html>
