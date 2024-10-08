@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I++迎新抽奖系统</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 36px;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+        button {
+            width: 100px;
+            height: 50px;
+            font-family: 黑体;
+            margin-top: 3vh;
+            font-weight: bold;
+        }
+        input {
+            margin-top: 1vh
+        }
+
+    </style>
+</head>
+<body>
+    <h1>I++迎新抽奖系统</h1>
+    <img src="image.png" width="200" height="200">
+    <label for="numberOfWinners">选择抽奖人数：</label>
+    <input type="number" id="numberOfWinners" min="1" value="1">
+    <button id="startButton">开始抽奖</button>
+    <button id="stopButton" disabled>停止抽奖</button>
+    <div id="result"></div>
+
+    <script>
+        let numberOfWinners;
+        let students = [
+        {"studentNumber":"61822127","name" : "蔡秉均"},{"studentNumber":"JS123843","name" : "高灏泽"},{"studentNumber":"JS123147","name" : "叶晨凯"},{"studentNumber":"JS123547","name" : "伍浩"},{"studentNumber":"JS123316","name" : "沈力"},{"studentNumber":"JS123519","name" : "张邦哲"},{"studentNumber":"JS123539","name" : "刘展鹏"},{"studentNumber":"09022215","name" : "杨永鑫"},{"studentNumber":"71122207","name" : "董子翔"},{"studentNumber":"JS123210","name" : "苟雨馨"},{"studentNumber":"JS123842","name" : "祁星辰"},{"studentNumber":"09J22121","name" : "曹力文"},{"studentNumber":"JS123317","name" : "夏润扬"},{"studentNumber":"JS123531","name" : "孙阿锋"},{"studentNumber":"JS123644","name" : "巩皓锴"},{"studentNumber":"09022101","name" : "马顺道"},{"studentNumber":"09022130","name" : "蔡思宇"},{"studentNumber":"JS123632","name" : "刘子业"},{"studentNumber":"JS123829","name" : "刘阿豪"},{"studentNumber":"JS123722","name" : "程宇"},{"studentNumber":"JS123534","name" : "孟庆澎"},{"studentNumber":"58122222","name" : "罗文斌"},{"studentNumber":"JS123726","name" : "刘御玺"},{"studentNumber":"JS123815","name" : "徐爽"},{"studentNumber":"JS123642","name" : "张益来"},{"studentNumber":"09022127","name" : "王潘羽"},{"studentNumber":"JS123610","name" : "于悦"},{"studentNumber":"JS123241","name" : "陈绎谦"},{"studentNumber":"JS123640","name" : "罗贤烨"},{"studentNumber":"JS123621","name" : "秦嘉羡"},{"studentNumber":"JS123438","name" : "唐崇喜"},{"studentNumber":"JS123736","name" : "尹胡东"},{"studentNumber":"JS123746","name" : "何祥裕"},{"studentNumber":"JS123437","name" : "刘玮辰"},{"studentNumber":"JS123833","name" : "孟轩辉"},{"studentNumber":"JS123515","name" : "徐浩羽"},{"studentNumber":"JS123626","name" : "胡艺飞"},{"studentNumber":"JS123245","name" : "张世勇"},{"studentNumber":"JS123639","name" : "刘桂吉"},{"studentNumber":"JS123427","name" : "冯可欣"},{"studentNumber":"JS123148","name" : "吴浩宇"},{"studentNumber":"JS123144","name" : "杨雨豪"},{"studentNumber":"JS123247","name" : "吴佳辉"},{"studentNumber":"JS123335","name" : "汪星宇"},{"studentNumber":"JS123816","name" : "黄煜杰"}];
+
+        let intervalId;
+
+        function getRandomStudent() {
+            const randomIndex = Math.floor(Math.random() * students.length);
+            return students[randomIndex];
+        }
+
+        function startLottery() {
+            numberOfWinners = parseInt(document.getElementById("numberOfWinners").value);
+           // const winners = [];
+
+            intervalId = setInterval(() => {
+                const winner = getRandomStudent();
+                document.getElementById("result").textContent = `抽奖中...  ${winner.studentNumber}-${winner.name}`;
+            }, 100);
+        }
+
+        function stopLottery() {
+            
+            clearInterval(intervalId);
+            let winners=[];
+            for (let i = 0; i < numberOfWinners; i++) {
+                const winner = getRandomStudent();
+                winners.push(`${winner.studentNumber}-${winner.name}`);
+            }
+            document.getElementById("result").textContent = `抽奖结果: ${winners.join(", ")}`;
+            document.getElementById("startButton").disabled = false;
+            document.getElementById("stopButton").disabled = true;
+        }
+
+        document.getElementById("startButton").addEventListener("click", () => {
+            document.getElementById("startButton").disabled = true;
+            document.getElementById("stopButton").disabled = false;
+            startLottery();
+        });
+
+        document.getElementById("stopButton").addEventListener("click", () => {
+            stopLottery();
+        });
+    </script>
+</body>
+</html>
